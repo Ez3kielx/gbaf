@@ -17,12 +17,15 @@ catch(Exception $e)
 
 	<?php
 
-$reqmdp = $bdd->prepare('SELECT * FROM account WHERE username = :username');
 
-$reqmdp->bindValue(':username', $_POST['usernamemdp'], PDO::PARAM_STR);
+  // VERIFICATION DU PSEUDO AVANT QUESTION
+
+
 
 if(isset($_POST['formmdp'])) {
-   $usernamemdp = ($_POST['usernamemdp']);
+$reqmdp = $bdd->prepare('SELECT * FROM account WHERE username = :username');
+$reqmdp->bindValue(':username', htmlspecialchars($_POST['usernamemdp']), PDO::PARAM_STR);
+   $usernamemdp = htmlspecialchars($_POST['usernamemdp']);
       if(!empty($usernamemdp)) {
         $reqmdp -> execute();
         $userexist = $reqmdp->rowCount();

@@ -8,13 +8,14 @@ catch(Exception $e)
 {
         die('Erreur : '.$e->getMessage());
 }
-$requser = $bdd->prepare('SELECT * FROM account WHERE username = :username AND password = :password');
 
-$requser->bindValue(':username', $_POST['usernameconnect'], PDO::PARAM_STR);
-$requser->bindValue(':password', sha1($_POST['passwordconnect']), PDO::PARAM_STR);
+// VERIFICATION USERNAME MOT DE PASSE + CREATION SESSION 
 
     if(isset($_POST['formconnect'])) {
-   $usernameconnect = ($_POST['usernameconnect']);
+$requser = $bdd->prepare('SELECT * FROM account WHERE username = :username AND password = :password');
+$requser->bindValue(':username', $_POST['usernameconnect'], PDO::PARAM_STR);
+$requser->bindValue(':password', sha1($_POST['passwordconnect']), PDO::PARAM_STR);
+   $usernameconnect = htmlspecialchars($_POST['usernameconnect']);
    $passwordconnect = sha1($_POST['passwordconnect']);
       if(!empty($usernameconnect) AND !empty($passwordconnect)) {
         $requser -> execute();
@@ -31,7 +32,7 @@ $requser->bindValue(':password', sha1($_POST['passwordconnect']), PDO::PARAM_STR
                 header("Location: inscription.php");
              }
           } else {
-             $erreur = 'Mauvais pseudo ou mot de passe !'.'</br>'.'<a href="mdpoublie.php">Mot de passe oublié ?</a>';
+             $erreur = 'Mauvais pseudo ou mot de passe !'.'</br>';
           }
    } else {
       $erreur = "Tous les champs doivent être complétés !";
@@ -57,7 +58,8 @@ $requser->bindValue(':password', sha1($_POST['passwordconnect']), PDO::PARAM_STR
          if(isset($erreur)) {
             echo '<font color="red" text-align:center>'.$erreur."</font>";
          }
-    ?>                                         
+    ?> 
+    <a href="mdpoublie.php">Mot de passe oublié ?</a>                                       
     </form>
     <div class="inscription"></div>
 </article> 

@@ -13,6 +13,9 @@ if(isset($_SESSION['id'])) {
    $requser->execute(array($_SESSION['id']));
    $user = $requser->fetch();
 
+
+// MODIFICATION DU MOT DE PASSE EN CAS D'OUBLIE
+   
    if(isset($_POST['newpassword']) AND !empty($_POST['newpassword']) AND isset($_POST['newpassword2']) AND !empty($_POST['newpassword2'])) {
       $mdp1 = sha1($_POST['newpassword']);
       $mdp2 = sha1($_POST['newpassword2']);

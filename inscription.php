@@ -10,17 +10,21 @@ catch(Exception $e)
 }
 
 
-$req = $bdd->prepare('INSERT INTO account(nom, prenom, username, password, question, reponse) VALUES(:nom, :prenom, :username, :password, :question, :reponse)');
+// INSERTION DU NOUVEAU MEMBRE DANS LA BDD
 
-$req->bindValue(':nom', $_POST['nom'], PDO::PARAM_STR);
-$req->bindValue(':prenom', $_POST['prenom'], PDO::PARAM_STR);
-$req->bindValue(':username', $_POST['username'], PDO::PARAM_STR);
-$req->bindValue(':password', sha1($_POST['password']), PDO::PARAM_STR);
-$req->bindValue(':question', $_POST['question'], PDO::PARAM_STR);
-$req->bindValue(':reponse', $_POST['reponse'], PDO::PARAM_STR);
+
+
 
 
 if(isset($_POST['forminscription'])){
+$req = $bdd->prepare('INSERT INTO account(nom, prenom, username, password, question, reponse) VALUES(:nom, :prenom, :username, :password, :question, :reponse)');
+
+$req->bindValue(':nom', htmlspecialchars($_POST['nom']), PDO::PARAM_STR);
+$req->bindValue(':prenom', htmlspecialchars($_POST['prenom']), PDO::PARAM_STR);
+$req->bindValue(':username', htmlspecialchars($_POST['username']), PDO::PARAM_STR);
+$req->bindValue(':password', sha1($_POST['password']), PDO::PARAM_STR);
+$req->bindValue(':question', $_POST['question'], PDO::PARAM_STR);
+$req->bindValue(':reponse', htmlspecialchars($_POST['reponse']), PDO::PARAM_STR);
      if(!empty($_POST['nom']) AND !empty($_POST['prenom']) AND !empty($_POST['username']) AND !empty($_POST['password']) AND !empty($_POST['reponse'])) {
         $pseudolength = strlen($_POST['username']);
             if($pseudolength <= 255) {
@@ -72,7 +76,6 @@ if(isset($_POST['forminscription'])){
          }
     ?>                                         
     </form>
-    <div class="inscription">Déjà inscrit? <a href="">Connectez vous</a></div> 
 </article> 
 </body>
 </html>

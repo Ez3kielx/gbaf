@@ -9,11 +9,14 @@ catch(Exception $e)
         die('Erreur : '.$e->getMessage());
 }
 
+// Verification de la réponse de récupération du mot de passe 
+
+
+
+if(isset($_POST['formrep'])) {
 $reqquest = $bdd->prepare('SELECT * FROM account WHERE username = :username AND reponse = :reponse');
 $reqquest->bindValue(':username', $_SESSION['username'], PDO::PARAM_STR);
 $reqquest->bindValue(':reponse', $_POST['reponse'], PDO::PARAM_STR);
-
-if(isset($_POST['formrep'])) {
    $reponse = ($_POST['reponse']);
       if(!empty($reponse)) {
         $reqquest -> execute();

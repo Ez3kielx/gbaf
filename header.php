@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <body>
       <div id="header">
         <a href="profil.php"><img class="logo" src="img/logo_gbaf.png" ></a>
@@ -22,4 +19,3 @@ session_start();
         
       </div>
    </body>
-</html>

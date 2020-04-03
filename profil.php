@@ -23,6 +23,7 @@ catch(Exception $e)
     <link rel="stylesheet" type="text/css" href="style.css">
 
 
+
 </head>
 <body>
     <?php
@@ -48,6 +49,9 @@ catch(Exception $e)
         <h2>Acteurs et partenaires</h2>
 
     <?php
+
+// Affichage dees articles dans la page d'accueil
+
         $reqarticle = $bdd->query('SELECT * FROM acteur');
 
         while($article = $reqarticle->fetch())
@@ -82,8 +86,37 @@ catch(Exception $e)
             ?>
     </div>
 </div>
-</body>
-</html>
+
 <?php   
 }
+
+else {
+
 ?>
+</body>
+</html>
+
+
+<html>
+<head>
+    <title> ERREUR 403</title>
+    <link rel="icon" href="img/logo.ico" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="fontawesome/css/all.css" rel="stylesheet">
+
+
+</head>
+<body class="error">
+<div class="interdit">
+    <div class="textinterdit">
+    <i class="fas fa-exclamation-triangle"></i>
+    <p> VOUS N'ETES PAS CONNECTE <br>VOUS NE POUVEZ PAS ACCEDER À CETTE PAGE </p>
+    <button><a href="index.php">REVENIR A L'ACCUEIL</a></button>
+    </div>
+</div>
+<?php
+}
+?>
+
+</body>
+</html>

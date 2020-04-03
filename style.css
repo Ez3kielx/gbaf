@@ -13,7 +13,7 @@ button {
 	border:none;
 	border-radius: 5px;
 	text-transform: uppercase;
-	background-color: #2abbbb;
+	background-color: #33caca;
 	margin-top: 20px;
 	width: 30%;
 	color: white;
@@ -21,6 +21,12 @@ button {
 	font-weight: 600;
 	letter-spacing: 3px;
 }
+
+button:hover {
+	background-color: white;
+	color: #33caca;
+}
+
  img{
  	width: 80%;
  }
@@ -32,6 +38,8 @@ button {
  a:visited {
  		color: inherit;
  }
+
+
 
 .formulaire{
 	font-family: 'Lato', arial, sans;
@@ -293,30 +301,6 @@ letter-spacing: 3px;
 text-transform: uppercase;
 }
 
-.vote {
-	margin: 50px auto;
-}
-
-.vote_btn {
-	display: inline-block;
-	margin-left: 20px;
-	transition: 0.3s;
-	text-align: right;
-	width: 50px;
-}
-
-.vote_btns {
-	margin-right: 20px;
-	text-align: right;
-}
-
-
-.vote_like:hover{
-	color: green;
-}
-.vote_dislike:hover{
-	color: red;
-}
 
 .bloccommentaire {
 	margin: 10px auto;
@@ -388,6 +372,43 @@ textarea:focus {
 	font-weight: bold;
 }
 
+.error{
+	background: #33caca;
+	padding-top: 25vh;
+}
+
+.interdit {
+	width: 100%;
+	text-align: center;
+    font-size: 40px;
+    font-weight: 900;
+    font-family:Lato, Helvetica, sans-serif;
+}
+
+.interdit p{
+
+	margin-bottom: 30px;
+
+}
+
+.textinterdit {
+	margin: auto;
+	background-color: #fff;
+	padding: 40px;
+	border-radius: 30px;
+	width: 70%;
+	-webkit-box-shadow: 1px 3px 18px -4px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 3px 18px -4px rgba(0,0,0,0.75);
+	box-shadow: 1px 3px 18px -4px rgba(0,0,0,0.75);
+}
+.textinterdit p{
+	line-height: 40px;
+}
+.textinterdit i{
+	margin: 30px auto;
+	color: red;
+	font-size: 70px;
+}
 @media screen and (max-width: 600px) {
 
 .formulaire{
@@ -415,6 +436,9 @@ textarea:focus {
 }
 textarea{
 	width: 100%;
+}
+.error{
+	padding-top: 10vh;
 }
 
 }

@@ -9,12 +9,18 @@ catch(Exception $e)
         die('Erreur : '.$e->getMessage());
 }
 
+// LIKE "t = 1"
+// DISLIKE "t = 2"
+
 if(isset($_GET['t'],$_GET['id']) AND !empty($_GET['t']) AND !empty($_GET['id'])) {
    $getid = (int) $_GET['id'];
    $gett = (int) $_GET['t'];
    $sessionid = $_SESSION['id'];
    $check = $bdd->prepare('SELECT id_acteur FROM acteur WHERE id_acteur = ?');
    $check->execute(array($getid));
+
+   // SI ON LIKE 
+
    if($check->rowCount() == 1) {
       if($gett == 1) {
          $check_like = $bdd->prepare('SELECT id FROM likes WHERE id_acteur = ? AND id_user = ?');
@@ -29,6 +35,8 @@ if(isset($_GET['t'],$_GET['id']) AND !empty($_GET['t']) AND !empty($_GET['id']))
             $ins->execute(array($getid, $sessionid));
          }
          
+       // SI ON DISLIKE
+
       } elseif($gett == 2) {
          $check_like = $bdd->prepare('SELECT id FROM dislike WHERE id_acteur = ? AND id_user = ?');
          $check_like->execute(array($getid,$sessionid));
