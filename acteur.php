@@ -36,11 +36,11 @@ catch(Exception $e)
 
         $reqarticle = $bdd->prepare('SELECT * FROM acteur WHERE id_acteur= ?');
         $reqarticle->execute(array($id_acteur));
-        if ($id_acteur > 4) {
+        $article = $reqarticle->fetch();
+        if (empty($article)) {
             header("Location: profil.php");
         }
-        while($article = $reqarticle->fetch())
-        {
+        
     ?>
             <div class="acteur">
                 <div class="imgacteur">
@@ -200,7 +200,6 @@ else{
     </div>
 <?php 
   
-}
 }
 
 ?>
